@@ -24,6 +24,7 @@ export const Navbar = () => {
             const userData = snapshot.data();
             if (userData) {
               setCurrentUser(userData.Name); // Update the current user state with the name of the logged in user.
+              console.log(userData.Name);
             }
           });
       } else {
@@ -48,20 +49,6 @@ export const Navbar = () => {
       <Link to="/" className="logo">
         <img src={logo} alt="Enactus Logo" />
       </Link>
-      {!currentUser && (
-        <div className="rightside">
-          <span>
-            <Link to="signup" className="navlink sign-up">
-              SIGN UP
-            </Link>
-          </span>
-          <span>
-            <Link to="login" className="navlink login">
-              LOGIN
-            </Link>
-          </span>
-        </div>
-      )}
       {currentUser && (
         <div className="rightside">
           <span>
@@ -82,6 +69,22 @@ export const Navbar = () => {
           </span>
         </div>
       )}
+      {!currentUser && (
+        <div className="rightside">
+          <span>
+            <Link to="signup" className="navlink sign-up">
+              SIGN UP
+            </Link>
+          </span>
+          <span>
+            <Link to="login" className="navlink login">
+              LOGIN
+            </Link>
+          </span>
+        </div>
+      )}
+      
     </div>
   );
 };
+
