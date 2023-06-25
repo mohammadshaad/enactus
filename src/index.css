@@ -1,4 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+:root {
+    --yellow: #fecf3e;
+    --gray: #17191b;
+    --black: #000;
+    --white: #fff;
+}
 
 * {
     margin: 0;
@@ -12,7 +23,7 @@
 
 .error-msg {
     color: red;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
 }
 
@@ -29,68 +40,236 @@ body {
     font-family: 'Open Sans', serif;
 }
 
-/* navbar */
 .navbox {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
+    padding: 20px 30px;
 }
 
-.navbox .leftside {
-    width: 80px;
-    height: 80px;
-}
-
-.navbox .leftside img {
+.navbox .logo {
     width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.navbox .logo img {
+    width: 140px;
 }
 
 .navbox .rightside {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
-    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
-.navbox .rightside span {
-    margin-right: 10px;
-}
-
-.navbox .rightside span .navlink {
+.login {
+    cursor: pointer;
     text-decoration: none;
-    color: #000;
+    padding: 8px 20px;
+    border-radius: 100px;
+    color: var(--black);
+    transition: all;
+    transition-duration: 0.2s;
 }
+
+.login:hover {
+    text-decoration: underline;
+    color: var(--gray);
+    text-underline-offset: 5px;
+    transition: all;
+    transition-duration: 0.2s;
+}
+
+.sign-up {
+    cursor: pointer;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 100px;
+    color: var(--black);
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    border: 1px solid var(--yellow);
+    background-color: var(--yellow);
+    margin-left: 10px;
+    box-shadow: 0px 0px 2px var(--gray);
+    transition: all;
+    transition-duration: 0.2s;
+} 
+
+.sign-up:hover {
+    text-decoration: none;
+    background-color: transparent;
+    box-shadow: 2px 4px var(--gray);
+    color: var(--gray);
+    border: 1px solid var(--gray);
+    transition: all;
+    transition-duration: 0.2s;
+}
+
+
 
 .navbox .rightside .no-of-products {
-    background: #f57224;
+    background: var(--yellow);
     color: #fff;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600;
-    padding: 2px;
     width: 14px;
     height: 14px;
     border-radius: 3px;
     position: absolute;
-    top: -5px;
-    left: 60px;
+    top: 28px;
+    right: 140px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .logout-btn {
-    padding: 5px;
-    border-radius: 3px;
-    color: #fff;
-    font-size: 12px;
+    padding: 8px 20px;
+    border-radius: 100px;
+    color: var(--black);
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     outline: none;
-    border: hidden;
-    background-color: #2eca8b;
+    border: 1px solid var(--yellow);
+    background-color: var(--yellow);
     margin-left: 10px;
+    box-shadow: 0px 0px 2px var(--gray);
+    transition: all;
+    transition-duration: 0.2s;
+} 
+
+.logout-btn:hover {
+    background-color: transparent;
+    box-shadow: 2px 4px var(--gray);
+    color: var(--gray);
+    border: 1px solid var(--gray);
+    transition: all;
+    transition-duration: 0.2s;
 }
+
+.shop-now {
+    cursor: pointer;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 100px;
+    color: var(--black);
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    border: 1px solid var(--yellow);
+    background-color: var(--yellow);
+    margin-left: 10px;
+    box-shadow: 0px 0px 2px var(--gray);
+    transition: all;
+    transition-duration: 0.2s;
+} 
+
+.shop-now:hover {
+    text-decoration: none;
+    background-color: transparent;
+    box-shadow: 2px 4px var(--yellow);
+    color: var(--white);
+    border: 1px solid var(--white);
+    transition: all;
+    transition-duration: 0.2s;
+}
+
+
+
+.landing__container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    background-color: var(--black);
+    background-image: url("./images/vitchennai-banner.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+
+.landing__header__container {
+    width: 60%;
+    min-height: 450px;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+    padding: 40px;
+}
+
+.landing__header {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.landing__header__main {
+    font-size: 4.0rem;
+    font-weight: 700;
+    margin-left: 0;
+    padding: 0;
+    border-bottom: none;
+    line-height: 110%;
+}
+
+.landing__header__discount {
+    font-size: 1.1rem;
+    color: #fecf3e;
+}
+
+.landing__image__container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing__image {
+    height: auto;
+    width: auto;
+    top: 0%;
+    z-index: 10;
+}
+
+
+@media screen and (max-width: 850px) {
+    .landing__image__container{
+       display: none;
+    }
+
+    .landing__header__main {
+        font-size: 2.6rem;
+    }
+
+    .landing__header__discount {
+        font-size: 0.8rem;
+    }
+
+    .landing__header {
+        gap: 10px;
+    }
+}
+
 
 /* products */
 
@@ -122,7 +301,7 @@ h1 {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     text-align: center;
     box-shadow: 5px 5px 4px #e4e4e4;
@@ -286,7 +465,7 @@ h1 {
 }
 
 .cashout-link {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     color: #000;
@@ -297,7 +476,7 @@ h1 {
     background-color: green;
     color: #fff;
     padding: 7px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
 }
 
