@@ -183,6 +183,10 @@ body {
     right: 30px;
 }
 
+.mobile-nav {
+    display: none;
+}
+
 @media(max-width: 768px) {
     .navbox {
         flex-direction: column;
@@ -205,6 +209,21 @@ body {
     .navbar-mobile-menu {
         color: var(--black);
         display: block;
+    }
+
+    .mobile-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+
+        z-index: 100;
+    }
+
+    .desktop-nav-menu {
+        display: none;
     }
 
 }
@@ -311,8 +330,15 @@ body {
     z-index: 10;
 }
 
+@media screen and (max-width: 480px) {
+    .landing__container{
+        background-position: -550px;
+    }
+}
 
 @media screen and (max-width: 850px) {
+   
+
     .landing__image__container{
        display: none;
     }
@@ -328,6 +354,11 @@ body {
 
     .landing__header {
         gap: 10px;
+    }
+
+    .shop-now {
+        padding: 10px 20px;
+        font-size: 12px;
     }
 
 }
@@ -387,19 +418,30 @@ body {
         padding: 50px 0px;
     }
     .about-content {
-        align-items: center;
+        align-items: flex-start;
+        justify-content: center;
         text-align: center;
-        gap: 10px;
+        max-width: 90%;
+        gap: 5px;
     }
     .about-content h1 {
         font-size: 2.0rem;
         height: auto;
+        text-align: left;
     }
     .about-content p {
-        max-width: 80%;
         text-align: justify;
         font-size: 0.8rem;
+        max-width: 100%;
     }
+    
+    .about-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .about-image img {
         width: 300px;
     }

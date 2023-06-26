@@ -11,6 +11,7 @@ export const Navbar = () => {
   const history = useHistory();
   const { totalQty } = useContext(CartContext);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Set up an observer on the Auth object
@@ -24,7 +25,11 @@ export const Navbar = () => {
             const userData = snapshot.data();
             if (userData) {
               setCurrentUser(userData.Name); // Update the current user state with the name of the logged in user.
-              console.log(userData.Name);
+              console.log(
+                "Hey " +
+                  userData.Name +
+                  "! 👋 Welcome to Enactus VITC E-Commerce Site ❤️ "
+              );
             }
           });
       } else {
@@ -44,12 +49,53 @@ export const Navbar = () => {
     });
   };
 
+  const handleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div className="navbox">
-      <Link to="/" className="logo">
-        <img src={logo} alt="Enactus Logo" />
-      </Link>
-      {currentUser && (
+      <div className="mobile-nav">
+        <Link to="/" className="logo">
+          <img src={logo} alt="Enactus Logo" />
+        </Link>
+
+        <div className="menu-buttons" onClick={handleMenu}>
+          {!isOpen && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className={`menu-icon `}
+            >
+              <rect x="2" y="5" width="20" height="2" />
+              <rect x="2" y="11" width="18" height="2" />
+              <rect x="2" y="17" width="16" height="2" />
+            </svg>
+          )}
+
+          {isOpen && (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className={`menu-icon `}
+            >
+              <path d="M19.59 6L12 13.59L4.41 6L3 7.41L10.59 15L3 22.59L4.41 24L12 16.41L19.59 24L21 22.59L13.41 15L21 7.41L19.59 6Z" />
+            </svg>
+          )}
+        </div>
+      </div>
+
+      <div className="desktop-nav-menu">
+        <Link to="/" className="logo">
+          <img src={logo} alt="Enactus Logo" />
+        </Link>
+      </div>
+
+      {currentUser && isOpen && (
         <div className="rightside">
           <span>
             <Link to="/" className="navlink current-user">
@@ -58,7 +104,7 @@ export const Navbar = () => {
           </span>
           <span>
             <Link to="cartproducts" className="navlink">
-              <Icon icon={cart} className="cart"/>
+              <Icon icon={cart} className="cart" />
               <span className="no-of-products">{totalQty}</span>
             </Link>
           </span>
@@ -69,7 +115,7 @@ export const Navbar = () => {
           </span>
         </div>
       )}
-      {!currentUser && (
+      {!currentUser && isOpen && (
         <div className="rightside">
           <span>
             <Link to="signup" className="navlink sign-up">
@@ -83,8 +129,6 @@ export const Navbar = () => {
           </span>
         </div>
       )}
-      
     </div>
   );
 };
-
