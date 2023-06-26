@@ -11,7 +11,7 @@ export const Navbar = () => {
   const history = useHistory();
   const { totalQty } = useContext(CartContext);
   const [currentUser, setCurrentUser] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     // Set up an observer on the Auth object

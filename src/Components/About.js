@@ -5,6 +5,9 @@ export const About = () => {
   return (
     <div className="container">
       <div className="about-wrapper">
+        <div className="about-image">
+          <img src={Image} alt="Image" />
+        </div>
         <div className="about-content">
           <h1>About Us</h1>
           <p>
@@ -18,10 +21,6 @@ export const About = () => {
             kind of talent and perspective that are essential to leadership in
             an ever-more complicated and challenging world.
           </p>
-        </div>
-
-        <div className="about-image">
-          <img src={Image} alt="Image" />
         </div>
       </div>
     </div>
