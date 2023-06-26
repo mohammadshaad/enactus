@@ -11,6 +11,10 @@
     --white: #fff;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -192,8 +196,8 @@ body {
     }
 
     .navbox .rightside .no-of-products {
-        top: 0px;
-        right: 0px;
+        left: 40px;
+        top: 145px;
     }
     .navbox .rightside .logout-btn {
         margin-left: 0px;
