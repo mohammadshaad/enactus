@@ -1,41 +1,33 @@
-import React, { createContext } from 'react'
-import { db } from '../Config/Config'
+import React, { createContext, useEffect, useState } from 'react';
+import { db } from '../Config/Config';
 
 export const ProductsContext = createContext();
 
-export class ProductsContextProvider extends React.Component {
+export const ProductsContextProvider = ({ children }) => {
+  const [products, setProducts] = useState([]);
 
-    state = {
-        products: []
-    }
+  useEffect(() => {
+    const unsubscribe = db.collection('Products').onSnapshot(snapshot => {
+      const productsData = snapshot.docs.map(doc => ({
+        ProductID: doc.id,
+        ProductName: doc.data().ProductName,
+        ProductPrice: doc.data().ProductPrice,
+        ProductImg: doc.data().ProductImg
+      }));
 
-    componentDidMount() {
+      console.log(productsData); // Debug statement
 
-        const prevProducts = this.state.products;
-        db.collection('Products').onSnapshot(snapshot => {
-            let changes = snapshot.docChanges();
-            changes.forEach(change => {
-                if (change.type === 'added') {
-                    prevProducts.push({
-                        ProductID: change.doc.id,
-                        ProductName: change.doc.data().ProductName,
-                        ProductPrice: change.doc.data().ProductPrice,
-                        ProductImg: change.doc.data().ProductImg
-                    })
-                }
-                this.setState({
-                    products: prevProducts
-                })
-            })
-        })
+      setProducts(productsData);
+    });
 
-    }
-    render() {
-        return (
-            <ProductsContext.Provider value={{ products: [...this.state.products] }}>
-                {this.props.children}
-            </ProductsContext.Provider>
-        )
-    }
-}
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
+  return (
+    <ProductsContext.Provider value={{ products }}>
+      {children}
+    </ProductsContext.Provider>
+  );
+};

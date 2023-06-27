@@ -13,6 +13,7 @@ export const Landing = ({ user }) => {
       <Navbar user={user} />
       <Hero />
       <About />
+      <Products />
     </div>
   );
 };
