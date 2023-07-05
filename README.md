@@ -2,7 +2,7 @@
 
 Welcome to the official GitHub repository of Enactus VIT Chennai! 🚀
 
-This repository serves as a central hub for all our open-source projects, resources, and documentation related to our initiatives. 📚
+This repository serves the code for our official e-commerce website [enactusvit.com](https://enactusvit.com). 📚
 
 ## About Enactus VIT Chennai
 
