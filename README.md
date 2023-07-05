@@ -1,68 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Enactus VIT Chennai
 
-## Available Scripts
+Welcome to the official GitHub repository of Enactus VIT Chennai! This repository serves as a central hub for all our open-source projects, resources, and documentation related to our initiatives.
 
-In the project directory, you can run:
+## About Enactus VIT Chennai
 
-### `npm start`
+Enactus VIT Chennai is a student-led organization that strives to create positive social impact through entrepreneurial action. We bring together a diverse group of students from VIT Chennai who are passionate about driving change and making a difference in the world.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Repository Structure
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+This repository is organized into the following directories:
 
-### `npm test`
+- **Projects**: This directory contains subdirectories for each of our ongoing projects. Each project directory includes relevant source code, documentation, and resources associated with that project.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Resources**: Here, you will find useful resources, such as templates, guides, and frameworks that we have created or curated to support our projects and initiatives.
 
-### `npm run build`
+- **Documentation**: This directory hosts all the documentation related to Enactus VIT Chennai. It includes project reports, user guides, API documentation, and any other relevant documents.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Contributing**: If you are interested in contributing to our projects, please refer to the contributing guidelines in this directory. It outlines the steps to follow when submitting bug reports, feature requests, or pull requests.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get started with our projects, follow these steps:
 
-### `npm run eject`
+1. Clone the repository to your local machine using the following command:
+   ```
+   git clone https://github.com/enactus-vit-chennai/enactus-vit-chennai.git
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. Navigate to the specific project directory you are interested in.
+   
+3. Read the project's documentation and follow the instructions provided to set up and run the project.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. If you encounter any issues or have suggestions, feel free to open an issue in the respective project's repository.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Contributing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+We welcome contributions from everyone who shares our passion for social entrepreneurship. If you would like to contribute to any of our projects, please read our [contributing guidelines](./Contributing/CONTRIBUTING.md) for detailed instructions on how to get involved.
 
-## Learn More
+## Contact
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Website: [enactusvit.com](https://enactusvit.com)
+- Email: [contact@enactusvit.com](mailto:contact@enactusvit.com)
+- LinkedIn: [Enactus VIT Chennai](https://www.linkedin.com/company/enactusvit/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+We look forward to collaborating with you to create meaningful change through entrepreneurial action!
