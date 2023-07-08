@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { auth, db } from "../Config/Config";
+import { auth, db, firebase } from "../Config/Config";
 import { Link } from "react-router-dom";
 import LoginImg from "../images/login.png";
+import GoogleImg from "../images/google.png";
 
 export const Signup = (props) => {
-  // defining state
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // signup
   const signup = (e) => {
     e.preventDefault();
     auth
@@ -35,16 +34,37 @@ export const Signup = (props) => {
       .catch((err) => setError(err.message));
   };
 
+  const googleSignup = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth
+      .signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        db.collection("SignedUpUsersData")
+          .doc(user.uid)
+          .set({
+            Name: user.displayName,
+            Email: user.email,
+          })
+          .then(() => {
+            props.history.push("/login");
+          })
+          .catch((err) => setError(err.message));
+      })
+      .catch((err) => setError(err.message));
+  };
+
   return (
     <div className="login-container">
       <div className="login-wrapper">
         <div className="login-fields">
           <div className="login-titles">
             <h2 className="login-heading">Sign up</h2>
-            <h5 className="login-sub-heading">Create an account to get started!</h5>
+            <h5 className="login-sub-heading">
+              Create an account to get started!
+            </h5>
           </div>
           <form autoComplete="off" className="login-form" onSubmit={signup}>
-            {/* <label htmlFor="name">Name</label> */}
             <input
               type="text"
               className="email-input"
@@ -54,7 +74,6 @@ export const Signup = (props) => {
               placeholder="Enter your name"
             />
             <br />
-            {/* <label htmlFor="email">Email</label> */}
             <input
               type="email"
               className="email-input"
@@ -64,7 +83,6 @@ export const Signup = (props) => {
               placeholder="Enter your email"
             />
             <br />
-            {/* <label htmlFor="passowrd">Password</label> */}
             <input
               type="password"
               className="password-input"
@@ -78,11 +96,18 @@ export const Signup = (props) => {
               SUBMIT
             </button>
           </form>
+          <button onClick={googleSignup} className="google-login-btn">
+            <img src={GoogleImg} alt="" className="google-login-img" />
+            Sign up with Google
+          </button>
           {error && <span className="error-msg">{error}</span>}
           <br />
           <span className="register-here-title">
             Already have an account? Login
-            <Link to="login" className="register-here"> Here</Link>
+            <Link to="login" className="register-here">
+              {" "}
+              Here
+            </Link>
           </span>
         </div>
         <div className="login-image">
