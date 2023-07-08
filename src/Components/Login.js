@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { auth } from "../Config/Config";
+import { auth, firebase } from "../Config/Config";
 import { Link } from "react-router-dom";
 import LoginImg from "../images/login.png";
+import GoogleImg from "../images/google.png";
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -21,6 +22,15 @@ export const Login = (props) => {
       .catch((err) => setError(err.message));
   };
 
+  const googleSignIn = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then(() => {
+        props.history.push("/");
+      })
+      .catch((err) => setError(err.message));
+  };
+
   return (
     <div className="login-container">
       <div className="login-wrapper">
@@ -30,7 +40,6 @@ export const Login = (props) => {
             <h5 className="login-sub-heading">Login back to your account</h5>
           </div>
           <form autoComplete="off" className="login-form" onSubmit={login}>
-            {/* <label htmlFor="email">Email</label> */}
             <input
               type="email"
               className="email-input"
@@ -40,20 +49,23 @@ export const Login = (props) => {
               placeholder="Enter your email"
             />
             <br />
-            {/* <label htmlFor="password">Password</label> */}
             <input
               type="password"
               className="password-input"
               required
               onChange={(e) => setPassword(e.target.value)}
               value={password}
-            placeholder="Enter your password"
+              placeholder="Enter your password"
             />
             <br />
             <button type="submit" className="login-btn">
               LOGIN
             </button>
           </form>
+          <button onClick={googleSignIn} className="google-login-btn">
+            <img src={GoogleImg} alt="" className="google-login-img" />
+            Login with Google
+          </button>
           {error && <span className="error-msg">{error}</span>}
           <br />
           <span className="register-here-title">

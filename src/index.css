@@ -94,6 +94,36 @@ body {
     transition-duration: 0.2s;
 }
 
+.google-login-btn {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 15px 40px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 300;
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all;
+    transition-duration: 0.2s;
+  }
+
+  .google-login-img {
+    width: 18px;
+    margin-right: 10px;
+  }
+  
+  .google-login-btn:hover {
+    transition: all;
+    transition-duration: 0.2s;
+    background-color: transparent;
+    box-shadow: 2px 4px var(--black);
+    color: var(--black);
+    border: 1px solid var(--black);
+  }  
+
 .sign-up {
     cursor: pointer;
     text-decoration: none;
