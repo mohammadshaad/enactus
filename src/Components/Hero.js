@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { ArrowLongRightIcon } from '@heroicons/react/24/outline'
 
 export const Hero = () => {
   return (
@@ -11,21 +12,10 @@ export const Hero = () => {
             <h1 className="landing__header__main">
               We are a nonprofit organisation and work worldwide
             </h1>
-            <Link to="/products">
-              <button className="shop-now">
+            <Link to="products">
+              <button className="shop-now group flex items-center justify-center gap-2 transition-all duration-200 ">
                 SHOP NOW
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  className="link-icon"
-                >
-                  <path d="M12 5l7 7-7 7" />
-                </svg>
+                <ArrowLongRightIcon className="h-6 w-6 text-black group-hover:text-white transition-all duration-200 group-hover:translate-x-4" />
               </button>
             </Link>
           </div>

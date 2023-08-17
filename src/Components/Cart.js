@@ -29,7 +29,7 @@ export const Cart = ({ user }) => {
       <Navbar user={user} />
       <>
         <div className="cart-container">
-        {shoppingCart.length !== 0 && <h1>Cart</h1>}
+          {shoppingCart.length !== 0 && <h1>Cart</h1>}
           {shoppingCart.length === 0 && (
             <>
               <div className="cart-headline">
@@ -37,7 +37,7 @@ export const Cart = ({ user }) => {
                   <img
                     src={NotFoundImg}
                     alt="Page Not Found"
-                    className="error-headline"
+                    className="w-96"
                   />
                 </div>
                 <h5>
@@ -45,7 +45,7 @@ export const Cart = ({ user }) => {
                   (Refresh the page) or you are not logged in
                 </h5>
                 <div className="return-to-home">
-                  <Link to="/" className="sign-up">
+                  <Link to="/" className="pay-btn py-3">
                     Return to Home page
                   </Link>
                 </div>
@@ -98,7 +98,7 @@ export const Cart = ({ user }) => {
               </div>
             ))}
           {shoppingCart.length > 0 && (
-            <div className="cart-summary">
+            <div className="cart-summary w-full">
               <div className="cart-summary-heading">Cart-Summary</div>
               <div className="cart-summary-price">
                 <span>Total Price</span>
@@ -108,14 +108,18 @@ export const Cart = ({ user }) => {
                 <span>Total Qty</span>
                 <span>{totalQty}</span>
               </div>
-              <Link to="cashout" className="cashout-link">
-                <button
-                  className="sign-up"
-                  style={{ marginTop: 5 + "px" }}
-                >
-                  Cash on delivery
-                </button>
-              </Link>
+              <div className="flex w-full md:w-1/2 flex-col md:flex-row items-center justify-center gap-6 ">
+                <Link to="cashout" className="cashout-link w-full">
+                  <button className="pay-btn w-full" style={{ marginTop: 5 + "px" }}>
+                    Cash on Delivery
+                  </button>
+                </Link>
+                <Link to="payment" className="cashout-link">
+                  <button className="pay-btn w-full" style={{ marginTop: 5 + "px" }}>
+                    Online Payment
+                  </button>
+                </Link>
+              </div>
             </div>
           )}
         </div>

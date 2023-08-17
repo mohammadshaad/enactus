@@ -4,7 +4,7 @@ import { ProductsContext } from "../Global/ProductsContext";
 import { CartContext } from "../Global/CartContext";
 import { Loader } from "./Loader";
 import { useAuth } from "../Global/AuthContext"; // Assuming you have the AuthContext set up
-import ProductNotFound from "../images/productnotfound.png"
+import ProductNotFound from "../images/productnotfound.png";
 
 export const Products = () => {
   const { products } = useContext(ProductsContext);
@@ -72,7 +72,8 @@ export const Products = () => {
           {filteredProducts.length === 0 ? (
             <div className="text-gray-400 font-light text-2xl flex-col flex items-center justify-center">
               <img src={ProductNotFound} alt="" className="w-96 mx-auto" />
-              No products to display.</div>
+              No products to display.
+            </div>
           ) : (
             filteredProducts.slice(0, displayedProductCount).map((product) => (
               <div className="product-card" key={product.ProductID}>
@@ -80,7 +81,9 @@ export const Products = () => {
                   <img src={product.ProductImg} alt="not found" />
                 </div>
                 <div className="product-name">{product.ProductName}</div>
-                <div className="product-price">Rs {product.ProductPrice}.00</div>
+                <div className="product-price">
+                  Rs {product.ProductPrice}.00
+                </div>
 
                 <button
                   className="addcart-btn"
@@ -91,12 +94,12 @@ export const Products = () => {
               </div>
             ))
           )}
-          {displayedProductCount < filteredProducts.length && (
-            <button className="see-more-btn" onClick={loadMoreProducts}>
-              See More
-            </button>
-          )}
         </div>
+        {displayedProductCount < filteredProducts.length && (
+          <button className="see-more-btn" onClick={loadMoreProducts}>
+            See More
+          </button>
+        )}
       </div>
     </div>
   );

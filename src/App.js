@@ -11,6 +11,7 @@ import { Cart } from "./Components/Cart";
 import { AddProducts } from "./Components/AddProducts";
 import { Cashout } from "./Components/Cashout";
 import { Landing } from "./Components/Landing";
+import StripeContainer from "./Components/StripeContainer";
 export class App extends Component {
   state = {
     user: null,
@@ -64,11 +65,15 @@ export class App extends Component {
               <Route path="/login" component={Login} />
               {/* cart products */}
               <Route
-                path="/cartproducts"
+                path="/cart"
                 component={() => <Cart user={this.state.user} />}
               />
+              <Route
+                path="/payment"
+                component={() => <StripeContainer user={this.state.user} />}
+              />
               {/* add products */}
-              <Route path="/addproducts" component={AddProducts} />
+              {/* <Route path="/addproducts" component={AddProducts} /> */}
               {/* cashout */}
               <Route
                 path="/cashout"

@@ -151,6 +151,33 @@ body {
   transition-duration: 0.2s;
 }
 
+.pay-btn {
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 100px;
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  border: 1px solid var(--yellow);
+  background-color: var(--yellow);
+  box-shadow: 0px 0px 2px var(--gray);
+  transition: all;
+  transition-duration: 0.2s;
+}
+
+.pay-btn:hover {
+  text-decoration: none;
+  background-color: transparent;
+  box-shadow: 2px 4px var(--gray);
+  color: var(--gray);
+  border: 1px solid var(--gray);
+  transition: all;
+  transition-duration: 0.2s;
+}
+
 .navlink {
   text-decoration: none !important;
   color: var(--black);
@@ -320,6 +347,7 @@ body {
 .shop-now {
   cursor: pointer;
   display: flex;
+  text-decoration: none;
   align-items: center;
   justify-content: center;
   padding: 18px 40px;
@@ -336,8 +364,6 @@ body {
 }
 
 .shop-now:hover {
-  text-decoration: underline;
-  text-underline-offset: 5px;
   background-color: transparent;
   box-shadow: 2px 4px var(--yellow);
   color: var(--white);
@@ -1048,7 +1074,6 @@ input:-webkit-autofill {
   flex-direction: column;
   padding: 50px;
   border: 1px solid #e4e4e4;
-  width: 300px;
 }
 
 .cart-summary .cart-summary-heading {

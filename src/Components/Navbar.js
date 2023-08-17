@@ -103,7 +103,7 @@ export const Navbar = () => {
             </Link>
           </span>
           <span>
-            <Link to="cartproducts" className="navlink">
+            <Link to="cart" className="navlink">
               <Icon icon={cart} className="cart" />
               <span className="no-of-products">{totalQty}</span>
             </Link>
