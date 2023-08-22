@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function PaymentForm() {
   const [success, setSuccess] = useState(false);
@@ -11,18 +11,35 @@ export default function PaymentForm() {
     e.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
-      card: elements.getElement(CardElement)
+      card: elements.getElement(CardElement),
     });
-
+    
     if (!error) {
       try {
         const { id } = paymentMethod;
-        const response = await axios.post("http://localhost:3000/payment", {
-          amount: 1000,
-          id
+        const response = await axios.post("http://localhost:8000/payment", {
+          amount: 10000,
+          id,
         });
 
-        if (response.data.success) {
+        if (response.data.requiresAction) {
+          // Payment requires additional action, like 3D Secure authentication
+          const { error: confirmError } = await stripe.confirmPayment(
+            response.data.clientSecret,
+            {
+              payment_method: {
+                card: elements.getElement(CardElement),
+              },
+            }
+          );
+
+          if (confirmError) {
+            console.log("Error confirming payment", confirmError);
+          } else {
+            console.log("Payment confirmed successfully");
+            setSuccess(true);
+          }
+        } else if (response.data.success) {
           console.log("Successful payment");
           setSuccess(true);
         }
@@ -47,7 +64,10 @@ export default function PaymentForm() {
         </form>
       ) : (
         <div className="text-center">
-          <h2 className="text-xl font-semibold">You just bought a sweet product! Congratulations, this is the best decision of your life.</h2>
+          <h2 className="text-xl font-semibold">
+            You just bought a sweet product! Congratulations, this is the best
+            decision of your life.
+          </h2>
         </div>
       )}
     </div>

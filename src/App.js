@@ -12,6 +12,8 @@ import { AddProducts } from "./Components/AddProducts";
 import { Cashout } from "./Components/Cashout";
 import { Landing } from "./Components/Landing";
 import StripeContainer from "./Components/StripeContainer";
+import Payment from "./Components/PaymentForm";
+import Success from "./Components/Success";
 export class App extends Component {
   state = {
     user: null,
@@ -46,10 +48,9 @@ export class App extends Component {
         <CartContextProvider>
           <BrowserRouter>
             <Switch>
-              
-            {/* landing page */}
-            <Route
-              exact
+              {/* landing page */}
+              <Route
+                exact
                 path="/"
                 component={() => <Landing user={this.state.user} />}
               />
@@ -72,6 +73,8 @@ export class App extends Component {
                 path="/payment"
                 component={() => <StripeContainer user={this.state.user} />}
               />
+              <Route path="/completion" element={<Success />} />
+
               {/* add products */}
               {/* <Route path="/addproducts" component={AddProducts} /> */}
               {/* cashout */}
