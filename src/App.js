@@ -16,7 +16,10 @@ import Payment from "./Components/PaymentForm";
 import Success from "./Components/Success";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
 import TermsofService from "./Components/TermsofService";
-import Support from "./Components/SupportPage";
+import Support from "./Components/ContactUs";
+import RefundPolicy from "./Components/RefundPolicy";
+import ShippingPolicy from "./Components/ShippingPolicy";
+
 export class App extends Component {
   state = {
     user: null,
@@ -94,8 +97,16 @@ export class App extends Component {
                 component={() => <TermsofService />}
               />
               <Route
-                path="/support"
+                path="/contact-us"
                 component={() => <Support />}
+              />
+              <Route
+                path="/refund-policy"
+                component={() => <RefundPolicy />}
+              />
+              <Route
+                path="/shipping-policy"
+                component={() => <ShippingPolicy />}
               />
               <Route component={NotFound} />
             </Switch>
