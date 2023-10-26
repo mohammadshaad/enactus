@@ -20,7 +20,7 @@ const RefundPolicy = () => {
       <div className="compalinace-page">
         <div className="header-conatiner">
           <div className="merchant-logo">
-            <div className="">
+            <div className="p-2">
               <img src={Logo} alt="logo" className="" />
             </div>
           </div>

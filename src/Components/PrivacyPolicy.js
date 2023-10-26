@@ -21,7 +21,7 @@ const PrivacyPolicy = () => {
         <div className="header-conatiner">
           <div className="merchant-logo">
             <div className="logo-container">
-              <div className="">
+              <div className="p-2">
                 <img src={Logo} alt="logo" className="" />
               </div>
             </div>
