@@ -14,6 +14,9 @@ import { Landing } from "./Components/Landing";
 import StripeContainer from "./Components/StripeContainer";
 import Payment from "./Components/PaymentForm";
 import Success from "./Components/Success";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
+import TermsofService from "./Components/TermsofService";
+import Support from "./Components/SupportPage";
 export class App extends Component {
   state = {
     user: null,
@@ -81,6 +84,18 @@ export class App extends Component {
               <Route
                 path="/cashout"
                 component={() => <Cashout user={this.state.user} />}
+              />
+              <Route
+                path="/privacy-policy"
+                component={() => <PrivacyPolicy />}
+              />
+              <Route
+                path="/terms-of-service"
+                component={() => <TermsofService />}
+              />
+              <Route
+                path="/support"
+                component={() => <Support />}
               />
               <Route component={NotFound} />
             </Switch>
