@@ -1,9 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { ProductsContext } from "../Global/ProductsContext";
 import { CartContext } from "../Global/CartContext";
 import { Loader } from "./Loader";
-import { useAuth } from "../Global/AuthContext"; // Assuming you have the AuthContext set up
+import { useAuth } from "../Global/AuthContext";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import ProductNotFound from "../images/productnotfound.png";
 
 export const Products = () => {
@@ -16,6 +18,11 @@ export const Products = () => {
   const [selectedFilter, setSelectedFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [displayedProductCount, setDisplayedProductCount] = useState(4);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
 
   const filteredProducts = products.filter((product) => {
     const productNameLower = product.ProductName.toLowerCase();
@@ -75,8 +82,15 @@ export const Products = () => {
               No products to display.
             </div>
           ) : (
-            filteredProducts.slice(0, displayedProductCount).map((product) => (
-              <div className="product-card" key={product.ProductID}>
+            filteredProducts.slice(0, displayedProductCount).map((product, index) => (
+              <motion.div
+                className="product-card"
+                key={product.ProductID}
+                ref={index === 0 ? ref : null}
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
                 <div className="product-img">
                   <img src={product.ProductImg} alt="not found" />
                 </div>
@@ -91,24 +105,27 @@ export const Products = () => {
                 >
                   ADD TO CART
                 </button>
-              </div>
+              </motion.div>
             ))
           )}
         </div>
         {displayedProductCount < filteredProducts.length && (
-          <button className="see-more-btn flex items-center justify-center gap-4" onClick={loadMoreProducts}>
+          <button
+            className="see-more-btn flex items-center justify-center gap-4"
+            onClick={loadMoreProducts}
+          >
             See More
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
+              className="w-6 h-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
               />
             </svg>
