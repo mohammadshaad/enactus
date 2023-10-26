@@ -16,7 +16,7 @@ export const ProductsContextProvider = ({ children }) => {
         ProductType: doc.data().ProductType // Add the new field
       }));
 
-      console.log(productsData); // Debug statement
+      // console.log(productsData); // Debug statement
 
       setProducts(productsData);
     });

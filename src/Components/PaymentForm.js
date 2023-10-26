@@ -23,7 +23,7 @@ export default function PaymentForm() {
         });
 
         if (response.data.requiresAction) {
-          // Payment requires additional action, like 3D Secure authentication
+
           const { error: confirmError } = await stripe.confirmPayment(
             response.data.clientSecret,
             {
