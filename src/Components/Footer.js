@@ -8,7 +8,7 @@ function Footer() {
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" className="flex items-center">
+              <a href="https://www.enactusvitc.com/" className="flex items-center">
                 <img src={Logo} className="h-16 mr-3 mb-10" alt="Enactus Logo" />
               </a>
             </div>
@@ -96,7 +96,7 @@ function Footer() {
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © 2023{" "}
-              <a href="https://flowbite.com/" className="hover:underline text-[#f5cb5c] hover:text-[#f5cb5c]">
+              <a href="https://www.enactusvitc.com/" className="hover:underline text-[#f5cb5c] hover:text-[#f5cb5c]">
                 Enactus™
               </a>
               . All Rights Reserved.
