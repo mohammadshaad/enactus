@@ -5,6 +5,7 @@ import { About } from "./About";
 import { Products } from "./Products";
 import { useHistory } from "react-router-dom";
 import { auth } from "../Config/Config";
+import Footer from "./Footer";
 
 export const Landing = ({ user }) => {
 
@@ -14,6 +15,7 @@ export const Landing = ({ user }) => {
       <Hero />
       <About />
       <Products />
+      <Footer />
     </div>
   );
 };
