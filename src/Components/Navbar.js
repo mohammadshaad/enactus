@@ -53,7 +53,7 @@ export const Navbar = () => {
   // handle logout
   const handleLogout = () => {
     auth.signOut().then(() => {
-      history.push("/login");
+      history.push("/");
     });
   };
 
