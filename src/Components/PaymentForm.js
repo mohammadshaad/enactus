@@ -1,12 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useAuth } from "../Global/AuthContext";
 import { CartContext } from "../Global/CartContext";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import logo from "../images/enactus-logo-gray.png";
 
 function PaymentForm() {
   const { currentUser } = useAuth();
   const { totalPrice } = useContext(CartContext);
+  const history = useHistory();
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    // Update the signed-in status
+    setIsSignedIn(!!currentUser);
+  }, [currentUser]);
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -34,6 +43,16 @@ function PaymentForm() {
     }
   };
 
+  const redirectToLogin = () => {
+    // Redirect to the login route
+    history.push("/login");
+  };
+
+  const handleCheckboxChange = () => {
+    // Toggle the checkbox state
+    setIsChecked(!isChecked);
+  };
+
   const displayRazorpay = async () => {
     try {
       const res = await loadScript(
@@ -42,6 +61,19 @@ function PaymentForm() {
 
       if (!res) {
         alert("Razorpay SDK failed to load. Are you online?");
+        return;
+      }
+
+      // Check if the user is signed in
+      if (!isSignedIn) {
+        alert("Please sign in to make a payment.");
+        redirectToLogin();
+        return;
+      }
+
+      // Check if the checkbox is checked
+      if (!isChecked) {
+        alert("Please accept the terms and services.");
         return;
       }
 
@@ -57,7 +89,7 @@ function PaymentForm() {
       );
 
       if (!orderResult) {
-        alert("Server error while creating order. Are you online?");
+        alert("Server error while creating an order. Are you online?");
         return;
       }
 
@@ -99,10 +131,11 @@ function PaymentForm() {
         prefill: {
           name: currentUser.name,
           email: currentUser.email,
-          contact: "1234567890",
+          contact: currentUser.mobile,
+          address: currentUser.address,
         },
         notes: {
-          address: "Enactus Corporate Office",
+          address: currentUser.address,
         },
         theme: {
           color: "#154726",
@@ -117,12 +150,40 @@ function PaymentForm() {
   };
 
   return (
-    <div className="">
-      <header className="">
-        <button className="" onClick={displayRazorpay}>
-          Pay Now
-        </button>
-      </header>
+    <div className="flex items-center justify-center w-full h-full">
+      <div className="flex flex-col gap-6 items-start justify-center p-10  md:p-20">
+        <div className="instructions flex flex-col items-start justify-center md:p-20 max-w-2xl">
+          <h1>Instructions</h1>
+          <h5 className="mb-4">Please carefully read through the instructions below.</h5>
+          <p>1. Accept the terms and services by checking the box below.</p>
+          <p>2. Click on the "Pay Now" button to complete your payment.</p>
+          <p>3. After completing the payment fill the form to confirm the shipping address and other details of your order</p>
+        </div>
+        <div className="w-full flex items-center justify-center ">
+          <label>
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={handleCheckboxChange}
+            />
+            <span className="ml-2">I have read and agree to the </span>
+            <a
+              href="https://www.enactusvitc.com/terms-of-service"
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-500"
+            >
+              terms and services
+            </a>
+            .
+          </label>
+        </div>
+        <div className="w-full flex items-center justify-center">
+          <button className="pay-btn" onClick={displayRazorpay}>
+            Pay Now
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

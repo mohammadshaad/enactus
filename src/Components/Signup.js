@@ -23,8 +23,8 @@ export const Signup = (props) => {
             Name: name,
             Email: email,
             Password: password,
-            Mobile: mobile, // Include mobile number
-            Address: address, // Include address
+            Mobile: mobile, 
+            Address: address, 
           })
           .then(() => {
             setName("");
@@ -51,8 +51,8 @@ export const Signup = (props) => {
           .set({
             Name: user.displayName,
             Email: user.email,
-            Mobile: mobile, // Include mobile number
-            Address: address, // Include address
+            Mobile: mobile,
+            Address: address,
           })
           .then(() => {
             props.history.push("/login");

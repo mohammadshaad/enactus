@@ -16,13 +16,6 @@ export const Cart = ({ user }) => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        history.push("/login");
-      }
-    });
-  });
 
   return (
     <>
@@ -109,14 +102,14 @@ export const Cart = ({ user }) => {
                 <span>{totalQty}</span>
               </div>
               <div className="flex w-full md:w-1/2 flex-col md:flex-row items-center justify-center gap-6 ">
-                <Link to="cashout" className="cashout-link w-full">
+                {/* <Link to="cashout" className="cashout-link w-full">
                   <button className="pay-btn w-full" style={{ marginTop: 5 + "px" }}>
                     Cash on Delivery
                   </button>
-                </Link>
+                </Link> */}
                 <Link to="payment" className="cashout-link">
-                  <button className="pay-btn w-full" style={{ marginTop: 5 + "px" }}>
-                    Online Payment
+                  <button className="pay-btn w-full py-8 " >
+                    Pay Now
                   </button>
                 </Link>
               </div>

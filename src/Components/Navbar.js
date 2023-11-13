@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { auth, db } from "../Config/Config";
 import { Icon } from "react-icons-kit";
 import { cart } from "react-icons-kit/entypo/cart";
-import {user} from 'react-icons-kit/icomoon/user';
+import { user } from "react-icons-kit/icomoon/user";
 import { useHistory } from "react-router-dom";
 import { CartContext } from "../Global/CartContext";
 
@@ -98,18 +98,26 @@ export const Navbar = () => {
 
       {currentUser && isOpen && (
         <div className="rightside">
-          <span className="flex items-center justify-center flex-row  flex-shrink-0 gap-2">
-            <Link to="/" className="navlink current-user text-xs">
+          <span className="group flex items-center justify-center flex-row  flex-shrink-0 gap-2">
+            <Link to="/" className="group-hover:opacity-60 duration-200 transition-all navlink current-user text-xs">
               {currentUser}
             </Link>
             <span className="">
-              <Icon icon={user} className="user"  size={20} />
+              <Icon icon={user} className="group-hover:opacity-60 duration-200 transition-all user" size={23} />
             </span>
           </span>
-          <span>
+          {/* <span>
             <Link to="cart" className="navlink">
               <Icon icon={cart} className="cart" />
               <span className="no-of-products">{totalQty}</span>
+            </Link>
+          </span> */}
+          <span className="flex items-center justify-center ml-3">
+            <Link to="cart" className="navlink cart-icon absolute">
+              <Icon icon={cart} className="cart" size={20}/>
+              <span className="no-of-products relative bottom-2 px-1">
+                {totalQty}
+              </span>
             </Link>
           </span>
           <span>
@@ -121,14 +129,22 @@ export const Navbar = () => {
       )}
       {!currentUser && isOpen && (
         <div className="rightside">
-          <span>
-            <Link to="signup" className="navlink sign-up">
-              SIGN UP
+          <span className="flex items-center justify-center ">
+            <Link to="cart" className="navlink cart-icon absolute">
+              <Icon icon={cart} className="cart" />
+              <span className="no-of-products relative bottom-2 px-1">
+                {totalQty}
+              </span>
             </Link>
           </span>
           <span>
             <Link to="login" className="navlink login">
               LOGIN
+            </Link>
+          </span>
+          <span>
+            <Link to="signup" className="navlink sign-up">
+              SIGN UP
             </Link>
           </span>
         </div>

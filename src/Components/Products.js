@@ -40,16 +40,11 @@ export const Products = () => {
   };
 
   const addToCart = (product) => {
-    if (currentUser) {
-      dispatch({
-        type: "ADD_TO_CART",
-        id: product.ProductID,
-        product,
-      });
-    } else {
-      history.push("/login");
-      login("your-email@example.com", "your-password");
-    }
+    dispatch({
+      type: "ADD_TO_CART",
+      id: product.ProductID,
+      product,
+    });
   };
 
   return (
@@ -82,31 +77,33 @@ export const Products = () => {
               No products to display.
             </div>
           ) : (
-            filteredProducts.slice(0, displayedProductCount).map((product, index) => (
-              <motion.div
-                className="product-card"
-                key={product.ProductID}
-                ref={index === 0 ? ref : null}
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="product-img">
-                  <img src={product.ProductImg} alt="not found" />
-                </div>
-                <div className="product-name">{product.ProductName}</div>
-                <div className="product-price">
-                  Rs {product.ProductPrice}.00
-                </div>
-
-                <button
-                  className="addcart-btn"
-                  onClick={() => addToCart(product)}
+            filteredProducts
+              .slice(0, displayedProductCount)
+              .map((product, index) => (
+                <motion.div
+                  className="product-card"
+                  key={product.ProductID}
+                  ref={index === 0 ? ref : null}
+                  initial={{ opacity: 0 }}
+                  animate={inView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  ADD TO CART
-                </button>
-              </motion.div>
-            ))
+                  <div className="product-img">
+                    <img src={product.ProductImg} alt="not found" />
+                  </div>
+                  <div className="product-name">{product.ProductName}</div>
+                  <div className="product-price">
+                    Rs {product.ProductPrice}.00
+                  </div>
+
+                  <button
+                    className="addcart-btn"
+                    onClick={() => addToCart(product)}
+                  >
+                    ADD TO CART
+                  </button>
+                </motion.div>
+              ))
           )}
         </div>
         {displayedProductCount < filteredProducts.length && (
