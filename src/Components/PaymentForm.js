@@ -135,7 +135,12 @@ function PaymentForm() {
         amount: amount.toString(),
         currency: currency,
         callback_url: 'https://www.enactusvitc.com',
-        redirect: true,      
+        modal: {
+          ondismiss: function () {
+            // Handle dismissal of the modal if needed
+            console.log("Razorpay modal closed");
+          },
+        },     
         name: "Enactus VIT Chennai",
         description: "Test Transaction",
         image: { logo },
