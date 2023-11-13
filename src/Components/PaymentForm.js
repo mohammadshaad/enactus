@@ -159,15 +159,15 @@ function PaymentForm() {
             const orderData = {
               orderId: successResult.data.orderId,
               paymentId: successResult.data.paymentId,
-              name: {currentUserName},
-              mobile: {currentUserMobile},
-              address: {currentUserAddress},
-              email: {currentUserEmail},
+              name: { currentUserName },
+              mobile: { currentUserMobile },
+              address: { currentUserAddress },
+              email: { currentUserEmail },
               products: shoppingCart.map((product) => ({
                 id: product.ProductID,
                 name: product.ProductName || "",
-                price: product.ProductPrice || 0, 
-                quantity: product.qty || 0, 
+                price: product.ProductPrice || 0,
+                quantity: product.qty || 0,
               })),
               timestamp: firebase.database.ServerValue.TIMESTAMP,
             };
@@ -183,13 +183,13 @@ function PaymentForm() {
           alert(successResult.data.msg);
         },
         prefill: {
-          name: {currentUserName},
-          email: {currentUserEmail},
-          contact: {currentUserMobile},
-          address: {currentUserAddress},
+          name: { currentUserName },
+          email: { currentUserEmail },
+          contact: { currentUserMobile },
+          address: { currentUserAddress },
         },
         notes: {
-          address: {currentUserAddress},
+          address: { currentUserAddress },
         },
         theme: {
           color: "#154726",
@@ -208,15 +208,24 @@ function PaymentForm() {
       <div className="flex flex-col gap-6 items-start justify-center p-10  md:p-20">
         <div className="instructions flex flex-col items-start justify-center md:p-20 max-w-2xl">
           <h1>Instructions</h1>
-          <h5 className="mb-4">
+          <h5 className="mb-10">
             Please carefully read through the instructions below.
           </h5>
-          <p>1. Accept the terms and services by checking the box below.</p>
-          <p>2. Click on the "Pay Now" button to complete your payment.</p>
-          <p>
-            3. After completing the payment fill the form to confirm the
-            shipping address and other details of your order
+          <p className="mb-6">
+            1. Before doing the payment go to
+            <a
+              href="https://www.enactusvitc.com/profile"
+              target="_blank"
+              rel="noreferrer"
+              className="text-black underline-offset-4 underline hover:text-[#f5cb5c] duration-200 transition-all "
+            >
+              {" "}
+              Profile
+            </a>{" "}
+            section and update your address and mobile number.
           </p>
+          <p className="mb-6">2. Click on the "Pay Now" button to complete your payment.</p>
+          <p className="mb-6">3. Accept the terms and services by checking the box below.</p>
         </div>
         <div className="w-full flex items-center justify-center ">
           <label>
@@ -230,7 +239,7 @@ function PaymentForm() {
               href="https://www.enactusvitc.com/terms-of-service"
               target="_blank"
               rel="noreferrer"
-              className="text-blue-500"
+              className="text-black underline-offset-4 underline hover:text-[#f5cb5c] duration-200 transition-all "
             >
               terms and services
             </a>

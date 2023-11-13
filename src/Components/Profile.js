@@ -5,6 +5,7 @@ import "firebase/firestore";
 import "firebase/database";
 import logo from "../images/enactus-logo-gray.png";
 import { auth, db } from "../Config/Config";
+import { Link } from "react-router-dom";
 
 // Check if Firebase app is not already initialized
 if (!firebase.apps.length) {
@@ -123,7 +124,7 @@ function Profile() {
         {isEditMode ? (
           // Edit Mode Form
           <form onSubmit={handleFormSubmit} className="flex flex-col space-y-4">
-                <label className="flex flex-col">
+            <label className="flex flex-col">
               <span className="text-gray-700">Name:</span>
               <input
                 type="text"
@@ -188,6 +189,14 @@ function Profile() {
         >
           {isEditMode ? "Cancel" : "Edit Details"}
         </button>
+      </div>
+      <div className="return-to-home w-full flex items-center justify-center mt-10">
+        <Link
+          to="/"
+          className="text-[#17191b]/50 hover:text-[#17191b] duration-200 transition-all no-underline decoration-white	 underline-offset-4 py-3"
+        >
+          Return to Home page
+        </Link>
       </div>
     </div>
   );
