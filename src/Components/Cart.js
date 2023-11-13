@@ -34,11 +34,10 @@ export const Cart = ({ user }) => {
                   />
                 </div>
                 <h5>
-                  No items in your cart or slow internet causing trouble
-                  (Refresh the page) or you are not logged in
+                  No items in your cart
                 </h5>
                 <div className="return-to-home">
-                  <Link to="/" className="pay-btn py-3">
+                  <Link to="/" className="text-[#17191b]/50 hover:text-[#17191b] duration-200 transition-all no-underline decoration-white	 underline-offset-4 py-3">
                     Return to Home page
                   </Link>
                 </div>

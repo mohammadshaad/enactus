@@ -1,21 +1,53 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useAuth } from "../Global/AuthContext";
+import { auth, db } from "../Config/Config";
 import { CartContext } from "../Global/CartContext";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import logo from "../images/enactus-logo-gray.png";
+import firebase from "firebase/app";
+import "firebase/database";
+import { Link } from "react-router-dom";
 
 function PaymentForm() {
-  const { currentUser } = useAuth();
-  const { totalPrice } = useContext(CartContext);
+  const [currentUserName, setCurrentUserName] = useState(null);
+  const [currentUserEmail, setCurrentUserEmail] = useState(null);
+  const [currentUserMobile, setCurrentUserMobile] = useState(null);
+  const [currentUserAddress, setCurrentUserAddress] = useState(null);
+  const { totalPrice, shoppingCart } = useContext(CartContext);
   const history = useHistory();
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    // Update the signed-in status
-    setIsSignedIn(!!currentUser);
-  }, [currentUser]);
+    // Set up an observer on the Auth object
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        db.collection("SignedUpUsersData")
+          .doc(user.uid)
+          .get()
+          .then((snapshot) => {
+            const userData = snapshot.data();
+            if (userData) {
+              setIsSignedIn(true);
+              setCurrentUserName(userData.Name);
+              setCurrentUserEmail(userData.Email);
+              setCurrentUserMobile(userData.Mobile);
+              setCurrentUserAddress(userData.Address);
+            }
+          });
+      } else {
+        setCurrentUserName(null);
+        setCurrentUserEmail(null);
+        setCurrentUserMobile(null);
+        setCurrentUserAddress(null);
+      }
+    });
+
+    // Clean up the observer when the component unmounts
+    return () => unsubscribe();
+  }, []);
 
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -44,7 +76,6 @@ function PaymentForm() {
   };
 
   const redirectToLogin = () => {
-    // Redirect to the login route
     history.push("/login");
   };
 
@@ -123,19 +154,42 @@ function PaymentForm() {
             data
           );
 
+          // Store information in Firebase
+          if (successResult.data.msg === "success") {
+            const orderData = {
+              orderId: successResult.data.orderId,
+              paymentId: successResult.data.paymentId,
+              name: {currentUserName},
+              mobile: {currentUserMobile},
+              address: {currentUserAddress},
+              email: {currentUserEmail},
+              products: shoppingCart.map((product) => ({
+                id: product.ProductID,
+                name: product.ProductName || "",
+                price: product.ProductPrice || 0, 
+                quantity: product.qty || 0, 
+              })),
+              timestamp: firebase.database.ServerValue.TIMESTAMP,
+            };
+
+            // Store data in Firebase
+            firebase.database().ref("orders").push(orderData);
+            console.log("Data to be sent:", orderData);
+          }
+
           // Log the success result
           console.log("Success Result:", successResult.data);
 
           alert(successResult.data.msg);
         },
         prefill: {
-          name: currentUser.name,
-          email: currentUser.email,
-          contact: currentUser.mobile,
-          address: currentUser.address,
+          name: {currentUserName},
+          email: {currentUserEmail},
+          contact: {currentUserMobile},
+          address: {currentUserAddress},
         },
         notes: {
-          address: currentUser.address,
+          address: {currentUserAddress},
         },
         theme: {
           color: "#154726",
@@ -154,10 +208,15 @@ function PaymentForm() {
       <div className="flex flex-col gap-6 items-start justify-center p-10  md:p-20">
         <div className="instructions flex flex-col items-start justify-center md:p-20 max-w-2xl">
           <h1>Instructions</h1>
-          <h5 className="mb-4">Please carefully read through the instructions below.</h5>
+          <h5 className="mb-4">
+            Please carefully read through the instructions below.
+          </h5>
           <p>1. Accept the terms and services by checking the box below.</p>
           <p>2. Click on the "Pay Now" button to complete your payment.</p>
-          <p>3. After completing the payment fill the form to confirm the shipping address and other details of your order</p>
+          <p>
+            3. After completing the payment fill the form to confirm the
+            shipping address and other details of your order
+          </p>
         </div>
         <div className="w-full flex items-center justify-center ">
           <label>
@@ -182,6 +241,15 @@ function PaymentForm() {
           <button className="pay-btn" onClick={displayRazorpay}>
             Pay Now
           </button>
+        </div>
+
+        <div className="return-to-home w-full flex items-center justify-center">
+          <Link
+            to="/"
+            className="text-[#17191b]/50 hover:text-[#17191b] duration-200 transition-all no-underline decoration-white	 underline-offset-4 py-3"
+          >
+            Return to Home page
+          </Link>
         </div>
       </div>
     </div>

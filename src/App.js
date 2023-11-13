@@ -19,6 +19,7 @@ import TermsofService from "./Components/TermsofService";
 import Support from "./Components/ContactUs";
 import RefundPolicy from "./Components/RefundPolicy";
 import ShippingPolicy from "./Components/ShippingPolicy";
+import AdminDashboard from "./Components/Dashboard";
 
 export class App extends Component {
   state = {
@@ -79,10 +80,7 @@ export class App extends Component {
                 path="/payment"
                 component={() => <StripeContainer user={this.state.user} />}
               /> */}
-              <Route
-                path="/payment"
-                component={() => <Payment />}
-              />
+              <Route path="/payment" component={() => <Payment />} />
               <Route path="/completion" element={<Success />} />
 
               {/* add products */}
@@ -100,17 +98,15 @@ export class App extends Component {
                 path="/terms-of-service"
                 component={() => <TermsofService />}
               />
-              <Route
-                path="/contact-us"
-                component={() => <Support />}
-              />
-              <Route
-                path="/refund-policy"
-                component={() => <RefundPolicy />}
-              />
+              <Route path="/contact-us" component={() => <Support />} />
+              <Route path="/refund-policy" component={() => <RefundPolicy />} />
               <Route
                 path="/shipping-policy"
                 component={() => <ShippingPolicy />}
+              />
+              <Route
+                path="/admin/dashboard"
+                component={() => <AdminDashboard />}
               />
               <Route component={NotFound} />
             </Switch>

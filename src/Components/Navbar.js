@@ -25,11 +25,18 @@ export const Navbar = () => {
           .then((snapshot) => {
             const userData = snapshot.data();
             if (userData) {
-              setCurrentUser(userData.Name); // Update the current user state with the name of the logged in user.
+              setCurrentUser(userData.Name);
               console.log(
                 "Hey " +
                   userData.Name +
-                  "! 👋 Welcome to Enactus VITC E-Commerce Site ❤️ "
+                  "! 👋 Welcome to Enactus VITC E-Commerce Site ❤️ " +
+                  "You are logged in now!" +
+                  "Your email : " + 
+                  userData.Email +
+                  "Your mobile : " +
+                  userData.Mobile +
+                  "Your address : " +
+                  userData.Address
               );
             }
           });
