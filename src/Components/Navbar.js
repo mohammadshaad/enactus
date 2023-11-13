@@ -62,7 +62,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="navbox">
+    <div className="navbox shadow-xl">
       <div className="mobile-nav">
         <Link to="/" className="logo">
           <img src={logo} alt="Enactus Logo" />
