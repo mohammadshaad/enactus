@@ -11,7 +11,7 @@ import { Cart } from "./Components/Cart";
 import { AddProducts } from "./Components/AddProducts";
 import { Cashout } from "./Components/Cashout";
 import { Landing } from "./Components/Landing";
-import StripeContainer from "./Components/StripeContainer";
+// import StripeContainer from "./Components/StripeContainer";
 import Payment from "./Components/PaymentForm";
 import Success from "./Components/Success";
 import PrivacyPolicy from "./Components/PrivacyPolicy";
@@ -75,9 +75,13 @@ export class App extends Component {
                 path="/cart"
                 component={() => <Cart user={this.state.user} />}
               />
-              <Route
+              {/* <Route
                 path="/payment"
                 component={() => <StripeContainer user={this.state.user} />}
+              /> */}
+              <Route
+                path="/payment"
+                component={() => <Payment />}
               />
               <Route path="/completion" element={<Success />} />
 

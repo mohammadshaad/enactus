@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { auth, db } from "../Config/Config";
 import { Icon } from "react-icons-kit";
 import { cart } from "react-icons-kit/entypo/cart";
+import {user} from 'react-icons-kit/icomoon/user';
 import { useHistory } from "react-router-dom";
 import { CartContext } from "../Global/CartContext";
 
@@ -97,10 +98,13 @@ export const Navbar = () => {
 
       {currentUser && isOpen && (
         <div className="rightside">
-          <span>
-            <Link to="/" className="navlink current-user">
+          <span className="flex items-center justify-center flex-row  flex-shrink-0 gap-2">
+            <Link to="/" className="navlink current-user text-xs">
               {currentUser}
             </Link>
+            <span className="">
+              <Icon icon={user} className="user"  size={20} />
+            </span>
           </span>
           <span>
             <Link to="cart" className="navlink">

@@ -8,6 +8,8 @@ export const Signup = (props) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
   const [error, setError] = useState("");
 
   const signup = (e) => {
@@ -21,11 +23,15 @@ export const Signup = (props) => {
             Name: name,
             Email: email,
             Password: password,
+            Mobile: mobile, // Include mobile number
+            Address: address, // Include address
           })
           .then(() => {
             setName("");
             setEmail("");
             setPassword("");
+            setMobile("");
+            setAddress("");
             setError("");
             props.history.push("/login");
           })
@@ -45,6 +51,8 @@ export const Signup = (props) => {
           .set({
             Name: user.displayName,
             Email: user.email,
+            Mobile: mobile, // Include mobile number
+            Address: address, // Include address
           })
           .then(() => {
             props.history.push("/login");
@@ -90,6 +98,24 @@ export const Signup = (props) => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               placeholder="Enter your password"
+            />
+            <br />
+            <input
+              type="text"
+              className="email-input"
+              required
+              onChange={(e) => setMobile(e.target.value)}
+              value={mobile}
+              placeholder="Enter your mobile number"
+            />
+            <br />
+            <input
+              type="text"
+              className="email-input"
+              required
+              onChange={(e) => setAddress(e.target.value)}
+              value={address}
+              placeholder="Enter your address"
             />
             <br />
             <button type="submit" className="login-btn">

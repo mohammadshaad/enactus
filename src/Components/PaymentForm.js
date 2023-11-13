@@ -1,122 +1,74 @@
-// import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-// import axios from "axios";
-// import React, { useState } from "react";
-
-// export default function PaymentForm() {
-//   const [success, setSuccess] = useState(false);
-//   const stripe = useStripe();
-//   const elements = useElements();
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const { error, paymentMethod } = await stripe.createPaymentMethod({
-//       type: "card",
-//       card: elements.getElement(CardElement),
-//     });
-
-//     if (!error) {
-//       try {
-//         const { id } = paymentMethod;
-//         const response = await axios.post("http://localhost:8000/payment", {
-//           amount: 10000,
-//           id,
-//         });
-
-//         if (response.data.requiresAction) {
-
-//           const { error: confirmError } = await stripe.confirmPayment(
-//             response.data.clientSecret,
-//             {
-//               payment_method: {
-//                 card: elements.getElement(CardElement),
-//               },
-//             }
-//           );
-
-//           if (confirmError) {
-//             console.log("Error confirming payment", confirmError);
-//           } else {
-//             console.log("Payment confirmed successfully");
-//             setSuccess(true);
-//           }
-//         } else if (response.data.success) {
-//           console.log("Successful payment");
-//           setSuccess(true);
-//         }
-//       } catch (error) {
-//         console.log("Error", error);
-//       }
-//     } else {
-//       console.log(error.message);
-//     }
-//   };
-
-//   return (
-//     <div className="w-full max-w-md mx-auto p-6 rounded-lg shadow-lg bg-white">
-//       {!success ? (
-//         <form onSubmit={handleSubmit} className="space-y-4 h-full">
-//           <div className="space-y-2">
-//             <CardElement className="p-2 border rounded-md" />
-//           </div>
-//           <button className="w-full px-4 py-2 pay-btn transition duration-300 ease-in-out">
-//             Pay
-//           </button>
-//         </form>
-//       ) : (
-//         <div className="text-center">
-//           <h2 className="text-xl font-semibold">
-//             You just bought a sweet product! Congratulations, this is the best
-//             decision of your life.
-//           </h2>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-import React from "react";
+import React, { useContext } from "react";
+import { useAuth } from "../Global/AuthContext";
+import { CartContext } from "../Global/CartContext";
 import axios from "axios";
 import logo from "../images/enactus-logo-gray.png";
 
 function PaymentForm() {
+  const { currentUser } = useAuth();
+  const { totalPrice } = useContext(CartContext);
 
-  function loadScript(src) {
+  const loadScript = (src) => {
     return new Promise((resolve) => {
-        const script = document.createElement("script");
-        script.src = src;
-        script.onload = () => {
-            resolve(true);
-        };
-        script.onerror = () => {
-            resolve(false);
-        };
-        document.body.appendChild(script);
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
     });
-  }
-  
-  async function displayRazorpay() {
-    const res = await loadScript(
+  };
+
+  const postTotalPrice = async (totalPrice) => {
+    try {
+      const response = await axios.post("http://localhost:8080/totalPrice", {
+        totalPrice: totalPrice,
+      });
+
+      console.log("TotalPrice updated successfully:", response.data);
+    } catch (error) {
+      console.error("Error updating totalPrice:", error);
+    }
+  };
+
+  const displayRazorpay = async () => {
+    try {
+      const res = await loadScript(
         "https://checkout.razorpay.com/v1/checkout.js"
-    );
-  
-    if (!res) {
+      );
+
+      if (!res) {
         alert("Razorpay SDK failed to load. Are you online?");
         return;
-    }
-  
-    // creating a new order
-    const result = await axios.post("http://localhost:8080/payment/orders");
-  
-    if (!result) {
-        alert("Server error. Are you online?");
+      }
+
+      // Call the function to post totalPrice before creating a new order
+      await postTotalPrice(totalPrice);
+
+      // Creating a new order
+      const orderResult = await axios.post(
+        "http://localhost:8080/payment/orders",
+        {
+          totalPrice: totalPrice,
+        }
+      );
+
+      if (!orderResult) {
+        alert("Server error while creating order. Are you online?");
         return;
-    }
-  
-    // Getting the order details back
-    const { amount, id: order_id, currency } = result.data;
-  
-    const options = {
-        key: "rzp_test_r6FiJfddJh76SI", // Enter the Key ID generated from the Dashboard
+      }
+
+      // Getting the order details back
+      const { amount, id: order_id, currency } = orderResult.data;
+
+      // Log the order details
+      console.log("Order Details:", { amount, order_id, currency });
+
+      const options = {
+        key: "rzp_test_xpNrpSoMasXwsy",
         amount: amount.toString(),
         currency: currency,
         name: "Enactus VIT Chennai",
@@ -124,41 +76,51 @@ function PaymentForm() {
         image: { logo },
         order_id: order_id,
         handler: async function (response) {
-            const data = {
-                orderCreationId: order_id,
-                razorpayPaymentId: response.razorpay_payment_id,
-                razorpayOrderId: response.razorpay_order_id,
-                razorpaySignature: response.razorpay_signature,
-            };
-  
-            const result = await axios.post("http://localhost:8080/payment/success", data);
-  
-            alert(result.data.msg);
+          const data = {
+            orderCreationId: order_id,
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpayOrderId: response.razorpay_order_id,
+            razorpaySignature: response.razorpay_signature,
+          };
+
+          // Log the data before making the POST request
+          console.log("Data to be sent:", data);
+
+          const successResult = await axios.post(
+            "http://localhost:8080/payment/success",
+            data
+          );
+
+          // Log the success result
+          console.log("Success Result:", successResult.data);
+
+          alert(successResult.data.msg);
         },
         prefill: {
-            name: "Mohammad Shaad",
-            email: "shaad@google.com",
-            contact: "123456789",
+          name: currentUser.name,
+          email: currentUser.email,
+          contact: "1234567890",
         },
         notes: {
-            address: "Shaad Corporate Office",
+          address: "Enactus Corporate Office",
         },
         theme: {
-            color: "#61dafb",
+          color: "#154726",
         },
-    };
-  
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
-  }
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    } catch (error) {
+      console.error("Error in displayRazorpay:", error);
+    }
+  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Buy React now!</p>
-        <button className="App-link" onClick={displayRazorpay}>
-          Pay ₹500
+    <div className="">
+      <header className="">
+        <button className="" onClick={displayRazorpay}>
+          Pay Now
         </button>
       </header>
     </div>
