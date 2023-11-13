@@ -109,6 +109,10 @@ export class App extends Component {
                 component={() => <Profile />}
               />
               <Route
+                path="/success"
+                component={() => <Success />}
+              />
+              <Route
                 path="/admin/dashboard"
                 component={() => <AdminDashboard />}
               />

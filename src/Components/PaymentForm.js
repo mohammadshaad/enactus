@@ -134,7 +134,7 @@ function PaymentForm() {
         key: "rzp_test_xpNrpSoMasXwsy",
         amount: amount.toString(),
         currency: currency,
-        callback_url: 'https://www.enactusvitc.com',
+        callback_url: 'https://enactus-backend.vercel.app/payment/success',
         modal: {
           ondismiss: function () {
             // Handle dismissal of the modal if needed
@@ -163,6 +163,8 @@ function PaymentForm() {
 
           // Store information in Firebase
           if (successResult.data.msg === "success") {
+            history.push("/success");
+
             const orderData = {
               orderId: successResult.data.orderId,
               paymentId: successResult.data.paymentId,
