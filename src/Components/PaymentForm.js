@@ -134,6 +134,8 @@ function PaymentForm() {
         key: "rzp_test_xpNrpSoMasXwsy",
         amount: amount.toString(),
         currency: currency,
+        callback_url: 'https://www.enactusvitc.com',
+        redirect: true,      
         name: "Enactus VIT Chennai",
         description: "Test Transaction",
         image: { logo },
