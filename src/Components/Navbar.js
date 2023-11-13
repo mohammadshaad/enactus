@@ -104,15 +104,15 @@ export const Navbar = () => {
       </div>
 
       {currentUser && isOpen && (
-        <div className="rightside">
-          <span className="group flex items-center justify-center flex-row  flex-shrink-0 gap-2">
-            <Link to="/" className="group-hover:opacity-60 duration-200 transition-all navlink current-user text-xs">
+        <div className="rightside no-underline ">
+          <Link to="/profile" className="group flex items-center justify-center flex-row  flex-shrink-0 gap-2 no-underline underline-offset-4">
+            <Link to="/profile" className="group-hover:opacity-60 duration-200 transition-all navlink current-user text-xs no-underline">
               {currentUser}
             </Link>
             <span className="">
-              <Icon icon={user} className="group-hover:opacity-60 duration-200 transition-all user" size={23} />
+              <Icon icon={user} className="group-hover:opacity-60 text-black duration-200 transition-all user" size={23} />
             </span>
-          </span>
+          </Link>
           {/* <span>
             <Link to="cart" className="navlink">
               <Icon icon={cart} className="cart" />

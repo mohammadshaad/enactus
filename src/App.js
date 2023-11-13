@@ -20,7 +20,7 @@ import Support from "./Components/ContactUs";
 import RefundPolicy from "./Components/RefundPolicy";
 import ShippingPolicy from "./Components/ShippingPolicy";
 import AdminDashboard from "./Components/Dashboard";
-
+import Profile from "./Components/Profile";
 export class App extends Component {
   state = {
     user: null,
@@ -103,6 +103,10 @@ export class App extends Component {
               <Route
                 path="/shipping-policy"
                 component={() => <ShippingPolicy />}
+              />
+              <Route
+                path="/profile"
+                component={() => <Profile />}
               />
               <Route
                 path="/admin/dashboard"
