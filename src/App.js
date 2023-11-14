@@ -81,7 +81,6 @@ export class App extends Component {
                 component={() => <StripeContainer user={this.state.user} />}
               /> */}
               <Route path="/payment" component={() => <Payment />} />
-              <Route path="/completion" element={<Success />} />
 
               {/* add products */}
               {/* <Route path="/addproducts" component={AddProducts} /> */}
@@ -109,7 +108,7 @@ export class App extends Component {
                 component={() => <Profile />}
               />
               <Route
-                path="/success"
+                path="/success/:paymentId"
                 component={() => <Success />}
               />
               <Route

@@ -98,7 +98,7 @@ function PaymentForm() {
 
       // Creating a new order
       const orderResult = await axios.post(
-        "http://localhost:8080/payment/orders",
+        "https://enactus-server.vercel.app/payment/orders",
         {
           totalPrice: totalPrice,
         }
@@ -113,13 +113,13 @@ function PaymentForm() {
       const { amount, id: order_id, currency } = orderResult.data;
 
       // Log the order details
-      console.log("Order Details:", { amount, order_id, currency });
+      // console.log("Order Details:", { amount, order_id, currency });
 
       const options = {
         key: "rzp_test_xpNrpSoMasXwsy",
         amount: amount.toString(),
         currency: currency,
-        callback_url: 'https://enactus-backend.vercel.app/payment/success',
+        callback_url: 'https://enactus-server.vercel.app/payment/success',
         modal: {
           ondismiss: function () {
             // Handle dismissal of the modal if needed
@@ -139,16 +139,16 @@ function PaymentForm() {
           };
 
           // Log the data before making the POST request
-          console.log("Data to be sent:", data);
+          // console.log("Data to be sent:", data);
 
           const successResult = await axios.post(
-            "http://localhost:8080/payment/success",
+            "https://enactus-server.vercel.app/payment/success",
             data
           );
 
           // Store information in Firebase
           if (successResult.data.msg === "success") {
-            history.push("/success");
+            history.push("/success/" + successResult.data.paymentId);
 
             const orderData = {
               orderId: successResult.data.orderId,
@@ -168,11 +168,11 @@ function PaymentForm() {
 
             // Store data in Firebase
             firebase.database().ref("orders").push(orderData);
-            console.log("Data to be sent:", orderData);
+            // console.log("Data to be sent:", orderData);
           }
 
           // Log the success result
-          console.log("Success Result:", successResult.data);
+          // console.log("Success Result:", successResult.data);
 
           alert(successResult.data.msg);
         },
