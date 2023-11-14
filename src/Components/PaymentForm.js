@@ -63,18 +63,6 @@ function PaymentForm() {
     });
   };
 
-  const postTotalPrice = async (totalPrice) => {
-    try {
-      const response = await axios.post("http://localhost:8080/totalPrice", {
-        totalPrice: totalPrice,
-      });
-
-      console.log("TotalPrice updated successfully:", response.data);
-    } catch (error) {
-      console.error("Error updating totalPrice:", error);
-    }
-  };
-
   const redirectToLogin = () => {
     history.push("/login");
   };
@@ -107,9 +95,6 @@ function PaymentForm() {
         alert("Please accept the terms and services.");
         return;
       }
-
-      // Call the function to post totalPrice before creating a new order
-      await postTotalPrice(totalPrice);
 
       // Creating a new order
       const orderResult = await axios.post(
