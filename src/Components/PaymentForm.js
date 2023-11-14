@@ -98,7 +98,7 @@ function PaymentForm() {
 
       // Creating a new order
       const orderResult = await axios.post(
-        "http://localhost:8080/payment/orders",
+        "https://enactus-backend.vercel.app/payment/orders",
         {
           totalPrice: totalPrice,
         }
@@ -142,7 +142,7 @@ function PaymentForm() {
           console.log("Data to be sent:", data);
 
           const successResult = await axios.post(
-            "http://localhost:8080/payment/success",
+            "https://enactus-backend.vercel.app/payment/success",
             data
           );
 
