@@ -62,10 +62,10 @@ export const Login = (props) => {
               LOGIN
             </button>
           </form>
-          <button onClick={googleSignIn} className="google-login-btn">
+          {/* <button onClick={googleSignIn} className="google-login-btn">
             <img src={GoogleImg} alt="" className="google-login-img" />
             Login with Google
-          </button>
+          </button> */}
           {error && <span className="error-msg">{error}</span>}
           <br />
           <span className="register-here-title">
