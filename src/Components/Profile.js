@@ -170,14 +170,21 @@ function Profile() {
           // Display Mode
           <>
             <h2 className="text-2xl font-bold text-gray-800">
+              <span className="text-gray-600 mr-1">Name:</span>
               {currentUserName}
             </h2>
-            <p className="text-gray-600">{currentUserMobile}</p>
+            <p className="text-gray-800 mt-4">
+              <span className="text-gray-600 mr-1">Mobile:</span>
+              {currentUserMobile}</p>
             <div className="mt-4">
-              <p className="text-gray-600">{currentUserEmail}</p>
+              <p className="text-gray-800">
+                <span className="text-gray-600 mr-1">Email:</span>
+                {currentUserEmail}</p>
             </div>
             <div className="mt-4">
-              <p className="text-gray-600">{currentUserAddress}</p>
+              <p className="text-gray-800">
+                <span className="text-gray-600 mr-1">Address:</span>
+                {currentUserAddress}</p>
             </div>
           </>
         )}
