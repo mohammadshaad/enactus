@@ -148,8 +148,8 @@ function PaymentForm() {
 
           // Store information in Firebase
           if (successResult.data.msg === "success") {
-            history.push("/success/" + successResult.data.paymentId);
-            // history.push("/success");
+            // history.push("/success/" + successResult.data.paymentId);
+            history.push("/success");
 
             const orderData = {
               orderId: successResult.data.orderId,
