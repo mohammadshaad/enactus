@@ -731,7 +731,6 @@ input:-webkit-autofill {
   color: var(--darkBlack);
   font-weight: 300;
   text-align: center;
-  margin-top: 20px;
   font-size: 14px;
 }
 

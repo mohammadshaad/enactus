@@ -68,7 +68,7 @@ export const Login = (props) => {
           </button> */}
           {error && <span className="error-msg">{error}</span>}
           <br />
-          <span className="register-here-title">
+          <span className="register-here-title -mt-20">
             Don't have an account? Register
             <Link to="signup" className="register-here"> Here</Link>
           </span>
