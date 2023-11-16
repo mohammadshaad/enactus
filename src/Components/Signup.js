@@ -115,17 +115,17 @@ export const Signup = (props) => {
               required
               onChange={(e) => setAddress(e.target.value)}
               value={address}
-              placeholder="Enter your address"
+              placeholder="Enter your address for shipping the product to you"
             />
             <br />
             <button type="submit" className="login-btn">
               SUBMIT
             </button>
           </form>
-          <button onClick={googleSignup} className="google-login-btn">
+          {/* <button onClick={googleSignup} className="google-login-btn">
             <img src={GoogleImg} alt="" className="google-login-img" />
             Sign up with Google
-          </button>
+          </button> */}
           {error && <span className="error-msg">{error}</span>}
           <br />
           <span className="register-here-title">
