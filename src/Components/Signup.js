@@ -129,10 +129,10 @@ export const Signup = (props) => {
           {error && <span className="error-msg">{error}</span>}
           <br />
           <span className="register-here-title md:-mt-6">
-            Already have an account? Login
+            Already have an account? 
             <Link to="login" className="register-here">
               {" "}
-              Here
+              Login Here
             </Link>
           </span>
         </div>
