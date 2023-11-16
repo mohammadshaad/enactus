@@ -75,7 +75,7 @@ export const Signup = (props) => {
           <form autoComplete="off" className="login-form" onSubmit={signup}>
             <input
               type="text"
-              className="email-input"
+              className="email-input text-black placeholder-black focus:text-black"
               required
               onChange={(e) => setName(e.target.value)}
               value={name}
@@ -84,7 +84,7 @@ export const Signup = (props) => {
             <br />
             <input
               type="email"
-              className="email-input"
+              className="email-input text-black placeholder-black focus:text-black"
               required
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -93,7 +93,7 @@ export const Signup = (props) => {
             <br />
             <input
               type="password"
-              className="password-input"
+              className="password-input text-black placeholder-black focus:text-black"
               required
               onChange={(e) => setPassword(e.target.value)}
               value={password}
@@ -102,7 +102,7 @@ export const Signup = (props) => {
             <br />
             <input
               type="text"
-              className="email-input"
+              className="email-input text-black placeholder-black focus:text-black"
               required
               onChange={(e) => setMobile(e.target.value)}
               value={mobile}
@@ -111,7 +111,7 @@ export const Signup = (props) => {
             <br />
             <input
               type="text"
-              className="email-input"
+              className="email-input text-black placeholder-black focus:text-black"
               required
               onChange={(e) => setAddress(e.target.value)}
               value={address}

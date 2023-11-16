@@ -42,7 +42,7 @@ export const Login = (props) => {
           <form autoComplete="off" className="login-form" onSubmit={login}>
             <input
               type="email"
-              className="email-input"
+              className="email-input placeholder-black focus:text-black"
               required
               onChange={(e) => setEmail(e.target.value)}
               value={email}
@@ -51,7 +51,7 @@ export const Login = (props) => {
             <br />
             <input
               type="password"
-              className="password-input"
+              className="password-input placeholder-black focus:text-black"
               required
               onChange={(e) => setPassword(e.target.value)}
               value={password}
