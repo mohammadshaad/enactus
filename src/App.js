@@ -107,14 +107,14 @@ export class App extends Component {
                 path="/profile"
                 component={() => <Profile />}
               />
-              {/* <Route
+              <Route
                 path="/success/:paymentId"
                 component={() => <Success />}
-              /> */}
-              <Route
+              />
+              {/* <Route
                 path="/success"
                 component={() => <Success />} 
-              />
+              /> */}
               <Route
                 path="/admin/dashboard"
                 component={() => <AdminDashboard />}
