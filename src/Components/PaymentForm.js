@@ -116,7 +116,7 @@ function PaymentForm() {
       // console.log("Order Details:", { amount, order_id, currency });
 
       const options = {
-        key: "rzp_test_xpNrpSoMasXwsy",
+        key: "rzp_live_tr93aDjCr3kxdK",
         amount: amount.toString(),
         currency: currency,
         callback_url: 'https://enactus-server.vercel.app/payment/success',
@@ -127,7 +127,7 @@ function PaymentForm() {
           },
         },     
         name: "Enactus VIT Chennai",
-        description: "Test Transaction",
+        description: "Thank you for your purchase!",
         image: { logo },
         order_id: order_id,
         handler: async function (response) {
