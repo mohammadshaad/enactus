@@ -187,7 +187,7 @@ function PaymentForm() {
           address: { currentUserAddress },
         },
         theme: {
-          color: "#154726",
+          color: "#FCC414",
         },
       };
 
