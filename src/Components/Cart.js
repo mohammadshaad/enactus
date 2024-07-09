@@ -106,11 +106,11 @@ export const Cart = ({ user }) => {
                     Cash on Delivery
                   </button>
                 </Link> */}
-                <Link to="payment" className="cashout-link">
+                {/* <Link to="payment" className="cashout-link">
                   <button className="pay-btn w-full py-8 " >
                     Pay Now
                   </button>
-                </Link>
+                </Link> */}
               </div>
             </div>
           )}
