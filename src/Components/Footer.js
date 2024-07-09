@@ -38,7 +38,7 @@ function Footer() {
                     <li className="mb-4">
                       <a
                         href="https://www.instagram.com/enactusvitc"
-                        className="hover:underline text-gray-300 hover:text-[#fecf3e] "
+                        className="hover:underline text-gray-500 hover:text-[#fecf3e] "
                         target="_blank"
                       >
                         Instagram
@@ -47,7 +47,7 @@ function Footer() {
                     <li>
                       <a
                         href="https://in.linkedin.com/company/enactusvitc"
-                        className="hover:underline text-gray-300 hover:text-[#fecf3e]"
+                        className="hover:underline text-gray-500 hover:text-[#fecf3e]"
                         target="_blank"
                       >
                         LinkedIn
@@ -63,7 +63,7 @@ function Footer() {
                     <li className="mb-4">
                       <a
                         href="/privacy-policy"
-                        className="hover:underline text-gray-300 hover:text-[#fecf3e]"
+                        className="hover:underline text-gray-500 hover:text-[#fecf3e]"
                         target="__blank"
                       >
                         Privacy Policy
@@ -72,7 +72,7 @@ function Footer() {
                     <li className="mb-4">
                       <a
                         href="/terms-of-service"
-                        className="hover:underline text-gray-300 hover:text-[#fecf3e]"
+                        className="hover:underline text-gray-500 hover:text-[#fecf3e]"
                         target="__blank"
                       >
                         Terms &amp; Conditions
@@ -81,25 +81,25 @@ function Footer() {
                     <li className="mb-4">
                       <a
                         href="/shipping-policy"
-                        className="hover:underline text-gray-300 hover:text-[#fecf3e]"
+                        className="hover:underline text-gray-500 hover:text-[#fecf3e]"
                         target="__blank"
                       >
                         Shipping Policy
                       </a>
                     </li>
-                    <li className="mb-4">
+                    {/* <li className="mb-4">
                       <a
                         href="/refund-policy"
-                        className="hover:underline text-gray-300 hover:text-[#fecf3e]"
+                        className="hover:underline text-gray-500 hover:text-[#fecf3e]"
                         target="__blank"
                       >
                         Refund Policy
                       </a>
-                    </li>
+                    </li> */}
                     <li className="mb-4">
                       <a
                         href="/contact-us"
-                        className="hover:underline text-gray-300 hover:text-[#fecf3e]"
+                        className="hover:underline text-gray-500 hover:text-[#fecf3e]"
                         target="__blank"
                       >
                         Contact Us

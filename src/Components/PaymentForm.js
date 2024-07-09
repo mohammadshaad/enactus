@@ -241,11 +241,11 @@ function PaymentForm() {
             .
           </label>
         </div>
-        <div className="w-full flex items-center justify-center">
+        {/* <div className="w-full flex items-center justify-center">
           <button className="pay-btn" onClick={displayRazorpay}>
             Pay Now
           </button>
-        </div>
+        </div> */}
 
         <div className="return-to-home w-full flex items-center justify-center">
           <Link
